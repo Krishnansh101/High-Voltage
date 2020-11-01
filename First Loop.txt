@@ -1,0 +1,55 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="5fj={W*iq?kl0EkWF~z/">Counter</variable>
+  </variables>
+  <block type="math_change" id="8IHfHfheQ75K[=:4cjOy" x="34" y="56">
+    <field name="VAR" id="5fj={W*iq?kl0EkWF~z/">Counter</field>
+    <value name="DELTA">
+      <shadow type="math_number" id="I;aJV`Pt|:_aL?.%l^Q(">
+        <field name="NUM">0</field>
+      </shadow>
+      <block type="math_number" id="`jyoQ?h!jhp|!p,A+9au">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+    <next>
+      <block type="controls_whileUntil" id="0DpXnERTn=Qvn$|v42tz">
+        <field name="MODE">WHILE</field>
+        <value name="BOOL">
+          <block type="logic_compare" id="MJx_`^.f:5f([~f6+Kv*">
+            <field name="OP">LT</field>
+            <value name="A">
+              <block type="variables_get" id="SlE#=Oh4j89qgV88s4P8">
+                <field name="VAR" id="5fj={W*iq?kl0EkWF~z/">Counter</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="math_number" id="o4=`$;[f5*K;Ey*j9VJ~">
+                <field name="NUM">10</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO">
+          <block type="math_change" id="U_C3wPIncNWnf=6X~p94">
+            <field name="VAR" id="5fj={W*iq?kl0EkWF~z/">Counter</field>
+            <value name="DELTA">
+              <shadow type="math_number" id="MX]83Rnebm-|JN.?Bp;U">
+                <field name="NUM">1</field>
+              </shadow>
+            </value>
+            <next>
+              <block type="text_print" id="aUx(L5CEQbrp(k_oY/Ru">
+                <value name="TEXT">
+                  <block type="variables_get" id="bI=-A68|57$/zAj*8Qk*">
+                    <field name="VAR" id="5fj={W*iq?kl0EkWF~z/">Counter</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </next>
+  </block>
+</xml>

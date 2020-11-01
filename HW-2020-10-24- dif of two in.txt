@@ -1,0 +1,133 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="r=]8g{I*yJU}Y,*DfcL4">Prev</variable>
+    <variable id="^I;wYcI;MeIHE5yL4TW-">Count</variable>
+    <variable id="Cd}tLNdlU%FX8U69IOS1">Dif</variable>
+    <variable id="qVb`Sh0xx+:hUC+xw9hR">Sum</variable>
+  </variables>
+  <block type="variables_set" id="{z4z3%ePd2E{_tV$IcmZ" x="67" y="-9">
+    <field name="VAR" id="r=]8g{I*yJU}Y,*DfcL4">Prev</field>
+    <value name="VALUE">
+      <block type="math_number" id="(z]pg[M`U2QF?]#(1]Eh">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+    <next>
+      <block type="variables_set" id="6TfLR1ovUU?y3_bI7iOm">
+        <field name="VAR" id="^I;wYcI;MeIHE5yL4TW-">Count</field>
+        <value name="VALUE">
+          <block type="math_number" id="z%YTzs{?36,~L9kiZy=U">
+            <field name="NUM">0</field>
+          </block>
+        </value>
+        <next>
+          <block type="variables_set" id="6eyY67v$0bHK2#6Fz7gC">
+            <field name="VAR" id="Cd}tLNdlU%FX8U69IOS1">Dif</field>
+            <value name="VALUE">
+              <block type="math_number" id="#!9hTtU:FH(uv$=)T977">
+                <field name="NUM">0</field>
+              </block>
+            </value>
+            <next>
+              <block type="variables_set" id="ps_s|jU,Ql]-fbMYk*u@">
+                <field name="VAR" id="qVb`Sh0xx+:hUC+xw9hR">Sum</field>
+                <value name="VALUE">
+                  <block type="math_number" id="Q^MzzJbWA%5YCQ:l`RVB">
+                    <field name="NUM">0</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="controls_repeat_ext" id=";PB9v0l~b8y`WPrhQL3-">
+                    <value name="TIMES">
+                      <block type="math_number" id="SN8,HOkM~M{O;vs-1y2-">
+                        <field name="NUM">10</field>
+                      </block>
+                    </value>
+                    <statement name="DO">
+                      <block type="math_change" id="bn?-o{[ZC^D7){pNN+GH">
+                        <field name="VAR" id="^I;wYcI;MeIHE5yL4TW-">Count</field>
+                        <value name="DELTA">
+                          <shadow type="math_number" id="^[@FPeNj7NeA6!6)J%he">
+                            <field name="NUM">1</field>
+                          </shadow>
+                        </value>
+                        <next>
+                          <block type="variables_set" id="S$n%VFwEf+V$@,W1_d}E">
+                            <field name="VAR" id="Cd}tLNdlU%FX8U69IOS1">Dif</field>
+                            <value name="VALUE">
+                              <block type="math_arithmetic" id="1yM=;:)?xjHB(U(dJzqR">
+                                <field name="OP">MINUS</field>
+                                <value name="A">
+                                  <block type="variables_get" id="KKi7?YlTO+Bx^Uo$o$e}">
+                                    <field name="VAR" id="^I;wYcI;MeIHE5yL4TW-">Count</field>
+                                  </block>
+                                </value>
+                                <value name="B">
+                                  <block type="variables_get" id="o{ze?s(NyKX}iMLuq+f`">
+                                    <field name="VAR" id="r=]8g{I*yJU}Y,*DfcL4">Prev</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="variables_set" id="=qxA-c#~}c[u.t8~2%%~">
+                                <field name="VAR" id="qVb`Sh0xx+:hUC+xw9hR">Sum</field>
+                                <value name="VALUE">
+                                  <block type="math_arithmetic" id="rIF5;cj}o.E:bLq#`D5F">
+                                    <field name="OP">ADD</field>
+                                    <value name="A">
+                                      <block type="variables_get" id="Jxqnoe|FU_T,}-E/+Seb">
+                                        <field name="VAR" id="^I;wYcI;MeIHE5yL4TW-">Count</field>
+                                      </block>
+                                    </value>
+                                    <value name="B">
+                                      <block type="variables_get" id="C+C``SMg?zw.~{o^?*X2">
+                                        <field name="VAR" id="r=]8g{I*yJU}Y,*DfcL4">Prev</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="text_print" id="/.TBh3=2VagC-|^+5cJv">
+                                    <value name="TEXT">
+                                      <block type="variables_get" id=")ZWN/0e,=,bFm58I%Tj5">
+                                        <field name="VAR" id="Cd}tLNdlU%FX8U69IOS1">Dif</field>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="text_print" id="o~sLuTXMZ8[%dsl#S;?R">
+                                        <value name="TEXT">
+                                          <block type="variables_get" id=".5[k78c^tP!:-)pgvG}e">
+                                            <field name="VAR" id="qVb`Sh0xx+:hUC+xw9hR">Sum</field>
+                                          </block>
+                                        </value>
+                                        <next>
+                                          <block type="variables_set" id="mJR#PR[Ue!@,53+YIfs:">
+                                            <field name="VAR" id="r=]8g{I*yJU}Y,*DfcL4">Prev</field>
+                                            <value name="VALUE">
+                                              <block type="variables_get" id="G[5XLpHpd!,mUUpiVzoJ">
+                                                <field name="VAR" id="^I;wYcI;MeIHE5yL4TW-">Count</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

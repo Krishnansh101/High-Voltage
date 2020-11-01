@@ -1,0 +1,93 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="u~Io6/o-Gr=|?W*jdjHd">Value</variable>
+    <variable id="OlvuJNOhUB$KxkJuS0k/">Count</variable>
+    <variable id="ju%iejz*y}`/}l0=m:PC">Result</variable>
+    <variable id="9?^l*){s,.v0^GKcmowQ">Square</variable>
+  </variables>
+  <block type="procedures_defreturn" id="@lu.}6RIE4FOoYaBpZlC" x="31" y="-21">
+    <mutation>
+      <arg name="Value" varid="u~Io6/o-Gr=|?W*jdjHd"></arg>
+    </mutation>
+    <field name="NAME">ComputeSquare</field>
+    <comment pinned="false" h="80" w="160">Describe this function...</comment>
+    <statement name="STACK">
+      <block type="variables_set" id="I;m];ZEZsPwmu:}xV?a(">
+        <field name="VAR" id="ju%iejz*y}`/}l0=m:PC">Result</field>
+        <value name="VALUE">
+          <block type="math_arithmetic" id="%LWJc/8wwoL@NqQw#nJ+">
+            <field name="OP">MULTIPLY</field>
+            <value name="A">
+              <block type="variables_get" id="Q}x/=Z3O%-ng`dUg5sq*">
+                <field name="VAR" id="u~Io6/o-Gr=|?W*jdjHd">Value</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="variables_get" id="w.Q9./VXHyepM5%(t+-t">
+                <field name="VAR" id="u~Io6/o-Gr=|?W*jdjHd">Value</field>
+              </block>
+            </value>
+          </block>
+        </value>
+      </block>
+    </statement>
+    <value name="RETURN">
+      <block type="variables_get" id="Wja|hp)9+Ji=|~7WKIU*">
+        <field name="VAR" id="ju%iejz*y}`/}l0=m:PC">Result</field>
+      </block>
+    </value>
+  </block>
+  <block type="variables_set" id="qgLs.K,h;R[/](Pv;*Q|" x="40" y="124">
+    <field name="VAR" id="OlvuJNOhUB$KxkJuS0k/">Count</field>
+    <value name="VALUE">
+      <block type="math_number" id="v)pI#AWVtB1-i#|]bs{j">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+    <next>
+      <block type="controls_repeat_ext" id="2n);l^~_RE$3OAe:E}KU">
+        <value name="TIMES">
+          <block type="math_number" id="l/TAC:y@=*v:,*k~;co7">
+            <field name="NUM">10</field>
+          </block>
+        </value>
+        <statement name="DO">
+          <block type="math_change" id="3Ajvrd4XBS|*MqpAVzqw">
+            <field name="VAR" id="OlvuJNOhUB$KxkJuS0k/">Count</field>
+            <value name="DELTA">
+              <shadow type="math_number" id="*9lna+#dNxSJymLw,nSq">
+                <field name="NUM">1</field>
+              </shadow>
+            </value>
+            <next>
+              <block type="variables_set" id="WzjxJ04y{w]{xq3s6qP}">
+                <field name="VAR" id="9?^l*){s,.v0^GKcmowQ">Square</field>
+                <value name="VALUE">
+                  <block type="procedures_callreturn" id="87(VQYOx|B79iQb_ncTc">
+                    <mutation name="ComputeSquare">
+                      <arg name="Value"></arg>
+                    </mutation>
+                    <value name="ARG0">
+                      <block type="variables_get" id="3DzuJ6;!A)oFxGC}-BY^">
+                        <field name="VAR" id="OlvuJNOhUB$KxkJuS0k/">Count</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="text_print" id="taTn`($8Z7#xg:ANFHET">
+                    <value name="TEXT">
+                      <block type="variables_get" id="*JkM49d(!5|~zD-R;=lM">
+                        <field name="VAR" id="9?^l*){s,.v0^GKcmowQ">Square</field>
+                      </block>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </next>
+  </block>
+</xml>

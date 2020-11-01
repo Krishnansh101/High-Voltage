@@ -1,0 +1,18 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="controls_if" id="5Q7:J](2GTh?Zz6)]CLo" x="94" y="21">
+    <value name="IF0">
+      <block type="logic_boolean" id="H8dwAYVYK?1gm!~Pr]]:">
+        <field name="BOOL">TRUE</field>
+      </block>
+    </value>
+    <statement name="DO0">
+      <block type="text_print" id="cDWqbgqre4p]2m#Te[a.">
+        <value name="TEXT">
+          <block type="text" id="e=*?zB`]Q@BW:]1N|4nb">
+            <field name="TEXT">Hi</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+</xml>

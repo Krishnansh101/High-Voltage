@@ -1,0 +1,111 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="+@Cs(uY{XSLuO`o]Bq1G">Value</variable>
+    <variable id="GU7Fy[FN3(i:v2S_-MaY">input</variable>
+    <variable id="uT%h*m]^4.yiumOvd`aG">Square</variable>
+    <variable id="3ak,{iG,1nJ$I+uL=kuB">result</variable>
+    <variable id="yQ)|2)i$JSApBB.^N/c:">x</variable>
+  </variables>
+  <block type="procedures_defreturn" id="mt13Yy%-_S_U4Xo@VDr!" x="38" y="12">
+    <mutation>
+      <arg name="input" varid="GU7Fy[FN3(i:v2S_-MaY"></arg>
+    </mutation>
+    <field name="NAME">computesquare</field>
+    <comment pinned="false" h="80" w="160">Describe this function...</comment>
+    <statement name="STACK">
+      <block type="variables_set" id="x6O:r2LoIZrcCV#42NY{">
+        <field name="VAR" id="3ak,{iG,1nJ$I+uL=kuB">result</field>
+        <value name="VALUE">
+          <block type="math_arithmetic" id="}J;E?+_`J+Ky2NADaoFA">
+            <field name="OP">MULTIPLY</field>
+            <value name="A">
+              <block type="variables_get" id="SLe`h;Hs$JDl.xwsZ}aA">
+                <field name="VAR" id="GU7Fy[FN3(i:v2S_-MaY">input</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="variables_get" id="vv6-%J:nVToC%]?BX?2n">
+                <field name="VAR" id="GU7Fy[FN3(i:v2S_-MaY">input</field>
+              </block>
+            </value>
+          </block>
+        </value>
+      </block>
+    </statement>
+    <value name="RETURN">
+      <block type="variables_get" id=":bG3%Vn_@Y|Myqv[G!?8">
+        <field name="VAR" id="3ak,{iG,1nJ$I+uL=kuB">result</field>
+      </block>
+    </value>
+  </block>
+  <block type="variables_set" id="ftz{{~2wUZKVZih3v:Nh" x="37" y="134">
+    <field name="VAR" id="+@Cs(uY{XSLuO`o]Bq1G">Value</field>
+    <value name="VALUE">
+      <block type="math_number" id="?6({z`e.|,C7PFiPA-;U">
+        <field name="NUM">20</field>
+      </block>
+    </value>
+    <next>
+      <block type="variables_set" id=";8T/u5k3~[BsE%4zg,s(">
+        <field name="VAR" id="uT%h*m]^4.yiumOvd`aG">Square</field>
+        <value name="VALUE">
+          <block type="procedures_callreturn" id="N]znV5}U$NlEJ!5$(b[S">
+            <mutation name="computesquare">
+              <arg name="input"></arg>
+            </mutation>
+            <value name="ARG0">
+              <block type="variables_get" id="CYBVS(%uyCIo%5_iRZZ#">
+                <field name="VAR" id="+@Cs(uY{XSLuO`o]Bq1G">Value</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="text_print" id="Ar)*#Jd*W7[yRU9gf?i8">
+            <value name="TEXT">
+              <block type="variables_get" id="txiC|m?7`01lJ,7D4[zM">
+                <field name="VAR" id="uT%h*m]^4.yiumOvd`aG">Square</field>
+              </block>
+            </value>
+            <next>
+              <block type="variables_set" id="ff[Q|5j6-;l/MeLIX:mK">
+                <field name="VAR" id="yQ)|2)i$JSApBB.^N/c:">x</field>
+                <value name="VALUE">
+                  <block type="math_number" id="WH|f9)FJU$HF}0l#|;O)">
+                    <field name="NUM">5</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="variables_set" id="$i!T_R!{J6EHcaV8u6Q[">
+                    <field name="VAR" id="uT%h*m]^4.yiumOvd`aG">Square</field>
+                    <value name="VALUE">
+                      <block type="procedures_callreturn" id="1A?HinY6g5AQ!*enyZjB">
+                        <mutation name="computesquare">
+                          <arg name="input"></arg>
+                        </mutation>
+                        <value name="ARG0">
+                          <block type="variables_get" id="`lP7dc?-i%:[kQnCvK~X">
+                            <field name="VAR" id="yQ)|2)i$JSApBB.^N/c:">x</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="text_print" id="zhd+~{(HVc2#v[}M}a;Z">
+                        <value name="TEXT">
+                          <block type="variables_get" id="X1vO0yV~.w5;YKgj|?To">
+                            <field name="VAR" id="uT%h*m]^4.yiumOvd`aG">Square</field>
+                          </block>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

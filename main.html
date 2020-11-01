@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Blockly Demo: Generating JavaScript</title>
+  <script src="/Users/Ansh/Documents/GitHub/blockly/blockly_compressed.js"></script>
+  <script src="/Users/Ansh/Documents/GitHub/blockly/blocks_compressed.js"></script>
+  <script src="/Users/Ansh/Documents/GitHub/blockly/javascript_compressed.js"></script>
+  <script src="/Users/Ansh/Documents/GitHub/blockly/msg/js/en.js"></script>
+  <style>
+    body {
+      background-color: #fff;
+      font-family: sans-serif;
+    }
+    h1 {
+      font-weight: normal;
+      font-size: 140%;
+    }
+  </style>
+</head>
+<body>
+  <h1><a href="https://developers.google.com/blockly/">Blockly</a> &gt;
+    <a href="/Users/Ansh/Documents/GitHub/blockly/blockly/demos/index.html">Demos</a> &gt; Generating JavaScript</h1>
+
+  <p>This is a simple demo of generating code from blocks and running
+  the code in a sandboxed JavaScript interpreter.</p>
+
+  <p>&rarr; More info on <a href="https://developers.google.com/blockly/guides/configure/web/code-generators">Code Generators</a> and <a href="https://developers.google.com/blockly/guides/app-integration/running-javascript">Running JavaScript</a>.</p>
+
+  <p>
+    <button onclick="showCode()">Show JavaScript</button>
+    <button onclick="runCode()">Run JavaScript</button>
+    <button onClick="clearWorkspace()">Clear Workspace</button>
+  </p>
+
+
+  <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
+
+  <table>
+    <tr>
+        <td>Filename to Save As:</td>
+        <td><input id="inputFileNameToSaveAs"></input></td>
+        <td><button onclick="saveTextAsFile()">Save Text to File</button></td>
+    </tr>
+    <tr>
+        <td>Select a File to Load:</td>
+        <td><input type="file" id="fileToLoad"></td>
+        <td><button onclick="loadFileAsText()">Load Selected File</button><td>
+    </tr>
+  </table>
+  <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
+    <category name="Logic" colour="%{BKY_LOGIC_HUE}">
+      <category name="If">
+        <block type="controls_if"></block>
+        <block type="controls_if">
+          <mutation else="1"></mutation>
+        </block>
+        <block type="controls_if">
+          <mutation elseif="1" else="1"></mutation>
+        </block>
+      </category>
+      <category name="Boolean" colour="%{BKY_LOGIC_HUE}">
+        <block type="logic_compare"></block>
+        <block type="logic_operation"></block>
+        <block type="logic_negate"></block>
+        <block type="logic_boolean"></block>
+        <block type="logic_null"></block>
+        <block type="logic_ternary"></block>
+      </category>
+    </category>
+    <category name="Loops" colour="%{BKY_LOOPS_HUE}">
+      <block type="controls_repeat_ext">
+        <value name="TIMES">
+          <block type="math_number">
+            <field name="NUM">10</field>
+          </block>
+        </value>
+      </block>
+      <block type="controls_whileUntil"></block>
+      <block type="controls_for">
+        <field name="VAR">i</field>
+        <value name="FROM">
+          <block type="math_number">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+        <value name="TO">
+          <block type="math_number">
+            <field name="NUM">10</field>
+          </block>
+        </value>
+        <value name="BY">
+          <block type="math_number">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+      </block>
+      <block type="controls_forEach"></block>
+      <block type="controls_flow_statements"></block>
+    </category>
+    <category name="Math" colour="%{BKY_MATH_HUE}">
+      <block type="math_number">
+        <field name="NUM">123</field>
+      </block>
+      <block type="math_arithmetic"></block>
+      <block type="math_single"></block>
+      <block type="math_trig"></block>
+      <block type="math_constant"></block>
+      <block type="math_number_property"></block>
+      <block type="math_round"></block>
+      <block type="math_on_list"></block>
+      <block type="math_modulo"></block>
+      <block type="math_constrain">
+        <value name="LOW">
+          <block type="math_number">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+        <value name="HIGH">
+          <block type="math_number">
+            <field name="NUM">100</field>
+          </block>
+        </value>
+      </block>
+      <block type="math_random_int">
+        <value name="FROM">
+          <block type="math_number">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+        <value name="TO">
+          <block type="math_number">
+            <field name="NUM">100</field>
+          </block>
+        </value>
+      </block>
+      <block type="math_random_float"></block>
+      <block type="math_atan2"></block>
+    </category>
+    <category name="Lists" colour="%{BKY_LISTS_HUE}">
+      <block type="lists_create_empty"></block>
+      <block type="lists_create_with"></block>
+      <block type="lists_repeat">
+        <value name="NUM">
+          <block type="math_number">
+            <field name="NUM">5</field>
+          </block>
+        </value>
+      </block>
+      <block type="lists_length"></block>
+      <block type="lists_isEmpty"></block>
+      <block type="lists_indexOf"></block>
+      <block type="lists_getIndex"></block>
+      <block type="lists_setIndex"></block>
+    </category>
+    <sep></sep>
+    <category name="Variables" custom="VARIABLE" colour="%{BKY_VARIABLES_HUE}">
+    </category>
+    <category name="Functions" custom="PROCEDURE" colour="%{BKY_PROCEDURES_HUE}">
+    </category>
+    <sep></sep>
+    <category name="Library" expanded="true">
+      <category name="Randomize">
+        <block type="procedures_defnoreturn">
+          <mutation>
+            <arg name="list"></arg>
+          </mutation>
+          <field name="NAME">randomize</field>
+          <statement name="STACK">
+            <block type="controls_for" inline="true">
+              <field name="VAR">x</field>
+              <value name="FROM">
+                <block type="math_number">
+                  <field name="NUM">1</field>
+                </block>
+              </value>
+              <value name="TO">
+                <block type="lists_length" inline="false">
+                  <value name="VALUE">
+                    <block type="variables_get">
+                      <field name="VAR">list</field>
+                    </block>
+                  </value>
+                </block>
+              </value>
+              <value name="BY">
+                <block type="math_number">
+                  <field name="NUM">1</field>
+                </block>
+              </value>
+              <statement name="DO">
+                <block type="variables_set" inline="false">
+                  <field name="VAR">y</field>
+                  <value name="VALUE">
+                    <block type="math_random_int" inline="true">
+                      <value name="FROM">
+                        <block type="math_number">
+                          <field name="NUM">1</field>
+                        </block>
+                      </value>
+                      <value name="TO">
+                        <block type="lists_length" inline="false">
+                          <value name="VALUE">
+                            <block type="variables_get">
+                              <field name="VAR">list</field>
+                            </block>
+                          </value>
+                        </block>
+                      </value>
+                    </block>
+                  </value>
+                  <next>
+                    <block type="variables_set" inline="false">
+                      <field name="VAR">temp</field>
+                      <value name="VALUE">
+                        <block type="lists_getIndex" inline="true">
+                          <mutation statement="false" at="true"></mutation>
+                          <field name="MODE">GET</field>
+                          <field name="WHERE">FROM_START</field>
+                          <value name="AT">
+                            <block type="variables_get">
+                              <field name="VAR">y</field>
+                            </block>
+                          </value>
+                          <value name="VALUE">
+                            <block type="variables_get">
+                              <field name="VAR">list</field>
+                            </block>
+                          </value>
+                        </block>
+                      </value>
+                      <next>
+                        <block type="lists_setIndex" inline="false">
+                          <value name="AT">
+                            <block type="variables_get">
+                              <field name="VAR">y</field>
+                            </block>
+                          </value>
+                          <value name="LIST">
+                            <block type="variables_get">
+                              <field name="VAR">list</field>
+                            </block>
+                          </value>
+                          <value name="TO">
+                            <block type="lists_getIndex" inline="true">
+                              <mutation statement="false" at="true"></mutation>
+                              <field name="MODE">GET</field>
+                              <field name="WHERE">FROM_START</field>
+                              <value name="AT">
+                                <block type="variables_get">
+                                  <field name="VAR">x</field>
+                                </block>
+                              </value>
+                              <value name="VALUE">
+                                <block type="variables_get">
+                                  <field name="VAR">list</field>
+                                </block>
+                              </value>
+                            </block>
+                          </value>
+                          <next>
+                            <block type="lists_setIndex" inline="false">
+                              <value name="AT">
+                                <block type="variables_get">
+                                  <field name="VAR">x</field>
+                                </block>
+                              </value>
+                              <value name="LIST">
+                                <block type="variables_get">
+                                  <field name="VAR">list</field>
+                                </block>
+                              </value>
+                              <value name="TO">
+                                <block type="variables_get">
+                                  <field name="VAR">temp</field>
+                                </block>
+                              </value>
+                            </block>
+                          </next>
+                        </block>
+                      </next>
+                    </block>
+                  </next>
+                </block>
+              </statement>
+            </block>
+          </statement>
+        </block>
+      </category>
+      <category name="Jabberwocky">
+        <block type="text_print">
+          <value name="TEXT">
+            <block type="text">
+              <field name="TEXT">'Twas brillig, and the slithy toves</field>
+            </block>
+          </value>
+          <next>
+            <block type="text_print">
+              <value name="TEXT">
+                <block type="text">
+                  <field name="TEXT">  Did gyre and gimble in the wabe:</field>
+                </block>
+              </value>
+              <next>
+                <block type="text_print">
+                  <value name="TEXT">
+                    <block type="text">
+                      <field name="TEXT">All mimsy were the borogroves,</field>
+                    </block>
+                  </value>
+                  <next>
+                    <block type="text_print">
+                      <value name="TEXT">
+                        <block type="text">
+                          <field name="TEXT">  And the mome raths outgrabe.</field>
+                        </block>
+                      </value>
+                    </block>
+                  </next>
+                </block>
+              </next>
+            </block>
+          </next>
+        </block>
+        <block type="text_print">
+          <value name="TEXT">
+            <block type="text">
+              <field name="TEXT">"Beware the Jabberwock, my son!</field>
+            </block>
+          </value>
+          <next>
+            <block type="text_print">
+              <value name="TEXT">
+                <block type="text">
+                  <field name="TEXT">  The jaws that bite, the claws that catch!</field>
+                </block>
+              </value>
+              <next>
+                <block type="text_print">
+                  <value name="TEXT">
+                    <block type="text">
+                      <field name="TEXT">Beware the Jubjub bird, and shun</field>
+                    </block>
+                  </value>
+                  <next>
+                    <block type="text_print">
+                      <value name="TEXT">
+                        <block type="text">
+                          <field name="TEXT">  The frumious Bandersnatch!"</field>
+                        </block>
+                      </value>
+                    </block>
+                  </next>
+                </block>
+              </next>
+            </block>
+          </next>
+        </block>
+      </category>
+    </category>
+    <category name="Text" colour="%{BKY_TEXTS_HUE}">
+      <block type="text"></block>
+      <block type="text_length"></block>
+      <block type="text_print"></block>
+    </category>
+  </xml>
+
+  <script>
+    var demoWorkspace = Blockly.inject('blocklyDiv',
+        {media: '/Users/Ansh/Documents/GitHub/blockly/blockly/media/',
+         toolbox: document.getElementById('toolbox')});
+    Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),
+                               demoWorkspace);
+
+
+    function showCode() {
+      // Generate JavaScript code and display it.
+      Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+      var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
+      alert(code);
+    }
+
+    function runCode() {
+      // Generate JavaScript code and run it.
+      window.LoopTrap = 1000;
+      Blockly.JavaScript.INFINITE_LOOP_TRAP =
+          'if (--window.LoopTrap == 0) throw "Infinite loop.";\n';
+      var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
+      Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+      try {
+        eval(code);
+      } catch (e) {
+        alert(e);
+      }
+    }
+
+    function clearWorkspace()
+    {
+
+        Blockly.mainWorkspace.clear()
+
+    }
+     
+    function saveTextAsFile()
+    {
+        var xmlDom = Blockly.Xml.workspaceToDom(demoWorkspace);
+        var xmlText = Blockly.Xml.domToPrettyText(xmlDom);
+
+        var textToSaveAsBlob = new Blob([xmlText], {type:"text/plain"});
+        var textToSaveAsURL = window.URL.createObjectURL(textToSaveAsBlob);
+        var fileNameToSaveAs = document.getElementById("inputFileNameToSaveAs").value;
+    
+        var downloadLink = document.createElement("a");
+        downloadLink.download = fileNameToSaveAs;
+        downloadLink.innerHTML = "Download File";
+        downloadLink.href = textToSaveAsURL;
+        downloadLink.onclick = destroyClickedElement;
+        downloadLink.style.display = "none";
+        document.body.appendChild(downloadLink);
+    
+        downloadLink.click();
+    }
+    
+    function destroyClickedElement(event)
+    {
+        document.body.removeChild(event.target);
+    }
+    
+    function loadFileAsText()
+    {
+        var fileToLoad = document.getElementById("fileToLoad").files[0];
+    
+        var fileReader = new FileReader();
+        fileReader.onload = function(fileLoadedEvent) 
+        {
+            var textFromFileLoaded = fileLoadedEvent.target.result;
+            var xmlDom = Blockly.Xml.textToDom(textFromFileLoaded)
+            Blockly.mainWorkspace.clear()
+            Blockly.Xml.domToWorkspace(xmlDom,
+                               demoWorkspace);
+        };
+        fileReader.readAsText(fileToLoad, "UTF-8");
+    }
+
+ 
+  </script>
+
+</body>
+</html>

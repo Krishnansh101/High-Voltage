@@ -1,0 +1,103 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="OlvuJNOhUB$KxkJuS0k/">Count</variable>
+    <variable id="+.K9d/j}vjy}z/pQ3OZJ">Sum</variable>
+    <variable id=".Am]qjnLwfws-[M;l2=|">Average</variable>
+  </variables>
+  <block type="variables_set" id="qgLs.K,h;R[/](Pv;*Q|" x="51" y="-2">
+    <field name="VAR" id="OlvuJNOhUB$KxkJuS0k/">Count</field>
+    <value name="VALUE">
+      <block type="math_number" id="v)pI#AWVtB1-i#|]bs{j">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+    <next>
+      <block type="variables_set" id="Y1C5jl0Wa6I4Ie}OO}rl">
+        <field name="VAR" id="+.K9d/j}vjy}z/pQ3OZJ">Sum</field>
+        <value name="VALUE">
+          <block type="math_number" id="xm=g4A=e[--`WSwNK4`{">
+            <field name="NUM">0</field>
+          </block>
+        </value>
+        <next>
+          <block type="variables_set" id="^Dt*0HKA.10PRlLH}-8.">
+            <field name="VAR" id=".Am]qjnLwfws-[M;l2=|">Average</field>
+            <value name="VALUE">
+              <block type="math_number" id="-mm3xpZSj)(MdB8-F}kT">
+                <field name="NUM">0</field>
+              </block>
+            </value>
+            <next>
+              <block type="controls_repeat_ext" id="2n);l^~_RE$3OAe:E}KU">
+                <value name="TIMES">
+                  <block type="math_number" id="l/TAC:y@=*v:,*k~;co7">
+                    <field name="NUM">10</field>
+                  </block>
+                </value>
+                <statement name="DO">
+                  <block type="math_change" id="3Ajvrd4XBS|*MqpAVzqw">
+                    <field name="VAR" id="OlvuJNOhUB$KxkJuS0k/">Count</field>
+                    <value name="DELTA">
+                      <shadow type="math_number" id="*9lna+#dNxSJymLw,nSq">
+                        <field name="NUM">1</field>
+                      </shadow>
+                    </value>
+                    <next>
+                      <block type="variables_set" id="{gi^zowUrFe/e(Iuowf[">
+                        <field name="VAR" id="+.K9d/j}vjy}z/pQ3OZJ">Sum</field>
+                        <value name="VALUE">
+                          <block type="math_arithmetic" id="BadHXx?FO5[?j@R{{EAq">
+                            <field name="OP">ADD</field>
+                            <value name="A">
+                              <block type="variables_get" id="$V=QDy(RjWrVH2%y[fV4">
+                                <field name="VAR" id="+.K9d/j}vjy}z/pQ3OZJ">Sum</field>
+                              </block>
+                            </value>
+                            <value name="B">
+                              <block type="variables_get" id="Pc({.,e~1b*C{xZew6$]">
+                                <field name="VAR" id="OlvuJNOhUB$KxkJuS0k/">Count</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+                <next>
+                  <block type="variables_set" id="6^M+OV|AyS:9O+54@l52">
+                    <field name="VAR" id=".Am]qjnLwfws-[M;l2=|">Average</field>
+                    <value name="VALUE">
+                      <block type="math_arithmetic" id=";+TD@F6e8{[Vay)]n:g9">
+                        <field name="OP">DIVIDE</field>
+                        <value name="A">
+                          <block type="variables_get" id="JF_=Pr@hq81*~$76HasK">
+                            <field name="VAR" id="+.K9d/j}vjy}z/pQ3OZJ">Sum</field>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="variables_get" id=")8k59MwXHDt6;Y~z(c-f">
+                            <field name="VAR" id="OlvuJNOhUB$KxkJuS0k/">Count</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="text_print" id="vQnfKNR$J=3][|@iu86V">
+                        <value name="TEXT">
+                          <block type="variables_get" id="gwexm0wbT(p*ZL*/8V$N">
+                            <field name="VAR" id=".Am]qjnLwfws-[M;l2=|">Average</field>
+                          </block>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>
